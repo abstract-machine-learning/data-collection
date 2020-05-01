@@ -1,0 +1,6 @@
+*.swp
+*.dat
+*.silva
+*.csv
+*/__pycache__
+*.pyc
