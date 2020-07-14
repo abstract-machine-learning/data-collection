@@ -18,7 +18,7 @@ def compress_all(directory = './domains'):
     file_path = directory + '/' + f
     if os.path.isdir(file_path):
       compress_all(file_path)
-    elif os.path.isfile(file_path) and os.path.splitext(file_path)[1] != '.zip':
+    elif os.path.isfile(file_path) and os.path.splitext(file_path)[1] == '.csv':
       compress(file_path)
 
 
