@@ -32,10 +32,15 @@ class ClassifierMapper:
             elif classifier.kernel == 'poly':
                 csv_writer.writerow(['polynomial', classifier.degree, classifier.coef0])
             elif classifier.kernel == 'rbf':
-                csv_writer.writerow(['rbf', gamma])
+                csv_writer.writerow(['rbf', classifier.gamma])
             
-            for i in range(0, classifier.classes_.shape[0]):
-                csv_writer.writerow([classifier.classes_[i].replace(" ", "-"), classifier.n_support_[i]])
+            n_classes = classifier.classes_.shape[0]
+            if n_classes > 2:
+                for i in range(0, classifier.classes_.shape[0]):
+                    csv_writer.writerow([classifier.classes_[i].replace(" ", "-"), classifier.n_support_[i]])
+            else:
+                csv_writer.writerow([classifier.classes_[1].replace(" ", "-"), classifier.n_support_[1]])
+                csv_writer.writerow([classifier.classes_[0].replace(" ", "-"), classifier.n_support_[0]])
             csv_writer.writerow(list(classifier.dual_coef_.flatten()))
             
             for support_vector in classifier.support_vectors_:
