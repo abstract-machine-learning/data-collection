@@ -11,6 +11,10 @@ class SVM:
         self.C = C
 
     def train(self, x, y):
+        if gamma == 'scale':
+            gamma = 1.0 / (len(x[0]) * np.var(x))
+        elif gamma == 'auto':
+            gamma = 1.0 / len(x[0])
         clf = svm.SVC(
             C = self.C,
             kernel = self.kernel,
